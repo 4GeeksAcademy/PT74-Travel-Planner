@@ -1,0 +1,15 @@
+.carousel-item img {
+    height: 250px;
+    object-fit: contain;
+}
+
+.card {
+    width: 400px;
+    margin: 0 auto;
+}
+
+.logo-img {
+    width: 50%;
+    height: 50%;
+    object-fit: contain;
+}
