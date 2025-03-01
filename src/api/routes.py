@@ -33,9 +33,20 @@ def register():
     if not data.get("email") or not data.get("password"):
         return jsonify({"error": "Email and Password are required"}), 400
 
+    # Check if email already exists
+
+    existing_user = User.query.filter_by(email=data["email"]).first()
+    if exisiting_user:
+        return jsonify({"error": "Email already registered"}), 409
+
+
     # Create and Save new user
-    new_user = User(email=data["email"])
-    new_user.password = data["password"]
+    new_user = User(
+        email=data["email"],
+        firstname=data.get("firstname",""),
+        lastname=data.get("lastname","")
+    )
+    new_user.password = data["pasword"]
 
     db.session.add(new_user)
     db.session.commit()
@@ -46,9 +57,13 @@ def register():
 @api.route("/login", methods=["POST"])
 def login():
     data = request.get_json()
+
+    if not data.get("email") or not data.get("password"):
+        return jsonify({"error": "Email and Password are required"}), 400
+
     user = User.query.filter_by(email=data.get("email")).first()
 
-    # Check if user email and password is correct
+    # Check if user email and password are correctct
     if user and user.check_password(data["password"]):
         access_token = create_access_token(identity=user.id)
         return jsonify ({"message": "Login successful", "token": access_token}), 200

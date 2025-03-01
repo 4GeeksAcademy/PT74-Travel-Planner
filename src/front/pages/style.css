@@ -1,5 +1,5 @@
 .carousel-item img {
-    height: 250px;
+    height: 20rem;
     object-fit: contain;
 }
 
@@ -9,7 +9,16 @@
 }
 
 .logo-img {
-    width: 50%;
-    height: 50%;
+    /* width: 25%; */
+    height: 3rem;
     object-fit: contain;
+}
+
+.navbar-brand {
+    font-size: 2.5rem;
+}
+
+.offcanvas-body {
+    list-style-type: none;
+    width: auto;
 }

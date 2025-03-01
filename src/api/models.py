@@ -1,18 +1,31 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import String, Boolean
 from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.ext.hybrid import hybrid_property
+from werkzeug.security import generate_password_hash, check_password_hash
 
 db = SQLAlchemy()
 
-class User(db.model):
+class User(db.Model):
     _tablename_ = 'user'
-    id = db.column(db.integer, primary_key=True)
+    id = db.Column(db.integer, primary_key=True)
     firstname = db.Column(db.String(30), nullable=False)
     lastname = db.Column(db.String(30), nullable=False)
-    email = db.column(db.string(250), nullable=False, unique=True)
-    password = db.Column(db.String(250), nullable=False)
+    email = db.Column(db.string(250), nullable=False, unique=True)
+    _password = db.Column(db.String(250), nullable=False)
     favorites = db.relationship('Favorites', backref='user', lazy=True)
 
+    @hybrid_property
+    def password(self):
+        return self._password
+    
+    @password.setter
+    def password(self, password):
+        self._password = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self._password, password)
+
     def serialize(self):
         return {
             "id": self.id,
@@ -23,10 +36,10 @@ class User(db.model):
 
 
 
-class Friend(db.model):
+class Friend(db.Model):
     _tablename_ = 'friend'
-    id = db.column(db.integer, primary_key=True)
-    email = db.column(db.string(250), nullable=False, unique=True)
+    id = db.Column(db.integer, primary_key=True)
+    email = db.Column(db.string(250), nullable=False, unique=True)
     firstname = db.Column(db.String(30), nullable=False)
     lastname = db.Column(db.String(30), nullable=False)
 
@@ -39,9 +52,9 @@ class Friend(db.model):
         }
 
 
-class Destination(db.model):
+class Destination(db.Model):
     _tablename_ = 'destination' 
-    id = db.column(db.integer, primary_key=True)
+    id = db.Column(db.integer, primary_key=True)
 
     def serialize(self):
         return {
@@ -49,13 +62,13 @@ class Destination(db.model):
         }    
 
 
-class Itinerary(db.model):
+class Itinerary(db.Model):
     _tablename_='Itinerary'
-    id = db.column(db.integer, primary_key=True)
-    date = db.column(db.string(250) nullable=False)
-    time = db.column(db.string(250) nullable=False)
-    event = db.column(db.string(250) nullable=False)
-    description = db.column(db.string(250) nullable=False)
+    id = db.Column(db.integer, primary_key=True)
+    date = db.Column(db.string(250), nullable=False)
+    time = db.Column(db.string(250), nullable=False)
+    event = db.Column(db.string(250), nullable=False)
+    description = db.Column(db.string(250), nullable=False)
     
 
     def serialize(self):
@@ -64,22 +77,23 @@ class Itinerary(db.model):
             "date": self.date,
             "time": self.time,
             "event": self.event,
-            "details": self.details,-
+            "description": self.description,
+        }
             
 
 
 
-class Expenses(db.model):
+class Expenses(db.Model):
     _tablename_='expenses'
-    id = db.column(db.integer, primary_key=True)
-    buyer = db.column(db.string(250) nullable=False)
-    expense = db.column(db.string(250) nullable=False)
-    split = db.column(db.string(250) nullable=False)
-    description = db.column(db.string(250) nullable=False)
-    date = db.column(db.string(250) nullable=False)
+    id = db.Column(db.integer, primary_key=True)
+    buyer = db.Column(db.string(250), nullable=False)
+    expense = db.Column(db.string(250), nullable=False)
+    split = db.Column(db.string(250), nullable=False)
+    description = db.Column(db.string(250), nullable=False)
+    date = db.Column(db.string(250), nullable=False)
     
     def serialize(self):
-    return {
+        return {
         "id": self.id,
         "buyer": self.buyer,
         "expense": self.expense,
@@ -90,12 +104,12 @@ class Expenses(db.model):
 
 
 
-class Packing_List(db.model):
+class PackingList(db.Model):
     _tablename_='packing_list'
-    id = db.column(db.integer, primary_key=True)
-    item = db.column(db.string(250) nullable=False)
-    category = db.column(db.string(250) nullable=False)
-    detination_type = db.column(db.string(250) nullable=False)
+    id = db.Column(db.integer, primary_key=True)
+    item = db.Column(db.string(250), nullable=False)
+    category = db.Column(db.string(250), nullable=False)
+    destination_type = db.Column(db.string(250), nullable=False)
 
     def serialize(self):
         return {
