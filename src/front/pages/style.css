@@ -1,0 +1,24 @@
+.carousel-item img {
+    height: 20rem;
+    object-fit: contain;
+}
+
+.card {
+    width: 400px;
+    margin: 0 auto;
+}
+
+.logo-img {
+    /* width: 25%; */
+    height: 3rem;
+    object-fit: contain;
+}
+
+.navbar-brand {
+    font-size: 2.5rem;
+}
+
+.offcanvas-body {
+    list-style-type: none;
+    width: auto;
+}
