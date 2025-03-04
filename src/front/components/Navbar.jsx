@@ -11,12 +11,12 @@ export const Navbar = () => {
 					<h5 class="offcanvas-title" id="offcanvasScrollingLabel">Travel Like A Rockstar!!</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 				</div>
-				<ul class="offcanvas-body">
-					<li className="my-1">Add Travel Companions</li>
-					<li className="my-1">Favorite Destinations</li>
-					<li className="my-1">View Packing List</li>
-					<li className="my-1">Enter Expenses</li>
-					<li className="my-1">View Itinerary</li>
+				<ul class="offcanvas-body d-flex flex-column gap-2">
+				<a href="/add-travel-companions" class="btn btn-outline-primary">Add Travel Companions</a>
+				<a href="/Destinations" class="btn btn-outline-primary">Favorite Destinations</a>
+        		<a href="/view-packing-list" class="btn btn-outline-primary">View Packing List</a>
+        		<a href="/enter-expenses" class="btn btn-outline-primary">Enter Expenses</a>
+        		<a href="/view-itinerary" class="btn btn-outline-primary">View Itinerary</a>
 				</ul>
 			</div>
 			<div className="container nav-item d-flex justify-content-center">
