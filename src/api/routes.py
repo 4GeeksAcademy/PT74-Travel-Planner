@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User
+from api.models import db, User, PackingList
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from flask_jwt_extended import create_access_token, JWTManager
@@ -69,3 +69,30 @@ def login():
         return jsonify ({"message": "Login successful", "token": access_token}), 200
 
     return jsonify({"error": "Invalid credentials"}), 401
+
+
+
+# Packing list endpoints
+@api.route('/packinglist', methods=['GET'])
+def packinglist():
+    list = PackingList.query.all()
+    return jsonify([item.serialize() for item in list])
+
+@api.route('/packinglist', methods=['POST'])
+def add_packing_list_item():
+    """
+    POST:
+    {
+	    "item": str,
+        "category": str,
+        "destination_type": str,
+	    "checked": bool
+    }
+    """
+    body = request.get_json(force=True)
+    item = PackingList(**body)
+
+    db.session.add(item)
+    db.session.commit()
+    db.session.refresh(item)
+    return jsonify(item.serialize())

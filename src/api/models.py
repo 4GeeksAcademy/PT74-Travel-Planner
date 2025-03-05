@@ -122,19 +122,19 @@ class PackingList(db.Model):
         }
 
 
-class checklist:
-    def _init_(self):
-        self.items = {}
+# class checklist:
+#     def _init_(self):
+#         self.items = {}
 
-        def add_item(self, item):
-            self.items[item] = False
-            def mark_done(self, item)
-            if item in self.items:
-                self.items[item] = True
-                def display(self):
-                    for items. status in self.items.items():
-                        status_str = "done" if status else "pending"
-                        print(f"{item}: {status_str}")
+#         def add_item(self, item):
+#             self.items[item] = False
+#             def mark_done(self, item)
+#             if item in self.items:
+#                 self.items[item] = True
+#                 def display(self):
+#                     for items. status in self.items.items():
+#                         status_str = "done" if status else "pending"
+#                         print(f"{item}: {status_str}")
 
 
 # class User(db.Model):
