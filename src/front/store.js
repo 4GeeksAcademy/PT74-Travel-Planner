@@ -1,8 +1,7 @@
-
 export const initialStore = () => {
   return {
     message: null,
-    authToken: localStorage.getItem('authToken') || null,  
+    authToken: localStorage.getItem("authToken") || null, // Check local storage for auth token
     todos: [
       {
         id: 1,
@@ -20,29 +19,27 @@ export const initialStore = () => {
 
 export default function storeReducer(store, action = {}) {
   switch (action.type) {
-    case 'set_hello':
+    case "set_hello":
       return {
         ...store,
         message: action.payload
       };
 
-    
-    case 'set_auth_token':
-      localStorage.setItem('authToken', action.payload); 
+    case "set_auth_token":
+      localStorage.setItem("authToken", action.payload); // Save token to localStorage
       return {
         ...store,
         authToken: action.payload
       };
 
-    
-    case 'clear_auth_token':
-      localStorage.removeItem('authToken'); 
+    case "clear_auth_token":
+      localStorage.removeItem("authToken"); // Remove token from localStorage
       return {
         ...store,
         authToken: null
       };
 
-    case 'add_task':
+    case "add_task":
       const { id, color } = action.payload;
       return {
         ...store,
@@ -50,6 +47,6 @@ export default function storeReducer(store, action = {}) {
       };
 
     default:
-      throw Error('Unknown action.');
+      throw Error("Unknown action.");
   }
 }

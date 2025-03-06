@@ -1,18 +1,18 @@
 import { Link } from "react-router-dom";
 import travelImg from "../assets/img/travel.png";
-import useGlobalReducer from "../hooks/useGlobalReducer";  // Corrected Import
+import useGlobalReducer from "../hooks/useGlobalReducer";
 
 export const Navbar = () => {
-    const { store, dispatch } = useGlobalReducer(); // Get state from global store
-    const { authToken } = store;
+    const { store, dispatch } = useGlobalReducer();
+    const { authToken } = store; // Get auth token from store
 
     const handleLogout = () => {
-        dispatch({ type: 'clear_auth_token' });
+        dispatch({ type: "clear_auth_token" }); // Clear auth token
     };
 
     return (
         <nav className="navbar navbar-light bg-primary nav-justified">
-            {authToken && (
+            {authToken && ( // Show menu only if user is logged in
                 <>
                     <button className="btn btn-primary-subtle fa-solid fa-bars nav-item" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"> Menu</button>
                     <div className="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabIndex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
@@ -21,11 +21,11 @@ export const Navbar = () => {
                             <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                         </div>
                         <ul className="offcanvas-body d-flex flex-column gap-2">
-                            <a href="/add-travel-companions" className="btn btn-outline-primary">Add Travel Companions</a>
-                            <a href="/Destinations" className="btn btn-outline-primary">Favorite Destinations</a>
-                            <a href="/view-packing-list" className="btn btn-outline-primary">View Packing List</a>
-                            <a href="/enter-expenses" className="btn btn-outline-primary">Enter Expenses</a>
-                            <a href="/view-itinerary" className="btn btn-outline-primary">View Itinerary</a>
+                            <Link to="/add-travel-companions" className="btn btn-outline-primary">Add Travel Companions</Link>
+                            <Link to="/destinations" className="btn btn-outline-primary">Favorite Destinations</Link>
+                            <Link to="/view-packing-list" className="btn btn-outline-primary">View Packing List</Link>
+                            <Link to="/enter-expenses" className="btn btn-outline-primary">Enter Expenses</Link>
+                            <Link to="/view-itinerary" className="btn btn-outline-primary">View Itinerary</Link>
                         </ul>
                     </div>
                 </>
@@ -48,3 +48,4 @@ export const Navbar = () => {
         </nav>
     );
 };
+
