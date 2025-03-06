@@ -3,19 +3,29 @@ import { Link } from "react-router-dom";
 import './style.css';
 
 export const Login = () => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        console.log("Logging in with:", { email, password });
+
+        
+    };
+
 	return (
 	<div>	
         <form>
-            <div class="mb-3">
-                <label for="InputEmail" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp"/>
-                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            <div className="mb-3">
+                <label for="InputEmail" className="form-label">Email address</label>
+                <input type="email" className="form-control" id="InputEmail" aria-describedby="emailHelp"/>
+                <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
             </div>
-            <div class="mb-3">
-                <label for="InputPassword" class="form-label">Password</label>
-                <input type="password" class="form-control" id="InputPassword"/>
+            <div className="mb-3">
+                <label for="InputPassword" className="form-label">Password</label>
+                <input type="password" className="form-control" id="InputPassword"/>
             </div>
-            <button type="submit" class="btn btn-primary">Login</button>
+            <button type="submit" className="btn btn-primary">Login</button>
 
             <div className="text-center mt-3">
                 <p>Don't have an account?</p>
