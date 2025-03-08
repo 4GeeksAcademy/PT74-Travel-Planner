@@ -1,7 +1,7 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
-from flask import Flask, request, jsonify, url_for, Blueprint
+from flask import Flask, request, jsonify, Blueprint
 from api.models import db, User, PackingList
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
@@ -10,20 +10,15 @@ from flask_jwt_extended import create_access_token, JWTManager
 jwt = JWTManager()
 api = Blueprint('api', __name__)
 
-
 # Allow CORS requests to this API
 CORS(api)
 
-
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
-
     response_body = {
         "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
     }
-
     return jsonify(response_body), 200
-
 
 # Registration Route
 @api.route("/register", methods=["POST"])
@@ -34,24 +29,22 @@ def register():
         return jsonify({"error": "Email and Password are required"}), 400
 
     # Check if email already exists
-
     existing_user = User.query.filter_by(email=data["email"]).first()
-    if exisiting_user:
+    if existing_user:
         return jsonify({"error": "Email already registered"}), 409
-
 
     # Create and Save new user
     new_user = User(
         email=data["email"],
-        firstname=data.get("firstname",""),
-        lastname=data.get("lastname","")
+        firstname=data.get("firstname", ""),
+        lastname=data.get("lastname", "")
     )
-    new_user.password = data["pasword"]
+    new_user.password = data["password"]  # Fixed "pasword" typo
 
     db.session.add(new_user)
     db.session.commit()
 
-    return jsonify ({"message": "User registered successfully", "user": new_user.serialize()})
+    return jsonify({"message": "User registered successfully", "user": new_user.serialize()}), 201
 
 # User Login Route
 @api.route("/login", methods=["POST"])
@@ -63,30 +56,28 @@ def login():
 
     user = User.query.filter_by(email=data.get("email")).first()
 
-    # Check if user email and password are correctct
+    # Check if user email and password are correct
     if user and user.check_password(data["password"]):
         access_token = create_access_token(identity=user.id)
-        return jsonify ({"message": "Login successful", "token": access_token}), 200
+        return jsonify({"message": "Login successful", "token": access_token}), 200
 
     return jsonify({"error": "Invalid credentials"}), 401
-
-
 
 # Packing list endpoints
 @api.route('/packinglist', methods=['GET'])
 def packinglist():
     list = PackingList.query.all()
-    return jsonify([item.serialize() for item in list])
+    return jsonify([item.serialize() for item in list]), 200
 
 @api.route('/packinglist', methods=['POST'])
 def add_packing_list_item():
     """
     POST:
     {
-	    "item": str,
+        "item": str,
         "category": str,
         "destination_type": str,
-	    "checked": bool
+        "checked": bool
     }
     """
     body = request.get_json(force=True)
@@ -95,4 +86,17 @@ def add_packing_list_item():
     db.session.add(item)
     db.session.commit()
     db.session.refresh(item)
-    return jsonify(item.serialize())
+    
+    return jsonify(item.serialize()), 201
+
+@api.route('/packinglist/<int:item_id>', methods=['DELETE'])
+def delete_packing_list_item(item_id):
+    item = PackingList.query.get(item_id)
+
+    if not item:
+        return jsonify({"error": "Item not found"}), 404
+
+    db.session.delete(item)
+    db.session.commit()
+
+    return jsonify({"message": "Item deleted successfully"}), 200
