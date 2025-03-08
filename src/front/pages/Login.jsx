@@ -50,12 +50,15 @@ export const Login = () => {
                 </div>
                 <button type="submit" className="btn btn-primary">Login</button>
 
+                {/* REGISTER BUTTON SECTION */}
                 <div className="text-center mt-3">
-                <p>Don't have an account?</p>
-                <Link to="/register">
-                    <button type="button" className="btn btn-outline-secondary">Register an Account</button>
-                </Link>
-            </div>
+                    <p>Don't have an account?</p>
+                    <Link to="/register">
+                        <button type="button" className="btn btn-outline-secondary">
+                            Register an Account
+                        </button>
+                    </Link>
+                </div>
             </form>
         </div>
     );

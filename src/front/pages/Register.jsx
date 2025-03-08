@@ -15,31 +15,37 @@ export const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        fetch(import.meta.env.VITE_BACKEND_URL + "/api/user", {
+        // Check that all fields are filled out before sendind your request.
+
+        if (![post.firstName, post.lastName, post.email, post.password].every(x => x)) {
+            console.log("Welp.");
+        }
+
+        fetch(import.meta.env.VITE_BACKEND_URL + "/api/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(post),
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log("Success:", data);
-            dispatch({ type: "set_auth_token", payload: data.token }); // Save auth token
-            navigate("/"); // Redirect user to home page
-        })
-        .catch(error => {
-            console.error("Error:", error);
-        });
+            .then(response => response.json())
+            .then(data => {
+                if (data.token) {
+                    console.log("Success:", data);
+                    localStorage.setItem("authToken", data.token);  // Store the token
+                    dispatch({ type: "set_auth_token", payload: data.token });
+                    navigate("/");  // Redirect user to home page
+                } else {
+                    console.error("Registration failed:", data.error);
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
     };
 
     return (
-        <div>	
+        <div>
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="firstName" className="form-label">First Name</label>
