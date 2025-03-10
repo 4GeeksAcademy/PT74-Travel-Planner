@@ -23,6 +23,9 @@ def handle_hello():
 def register():
     data = request.get_json()
 
+    if not data.get("email") or not data.get("password") or not data.get("firstname") or not data.get("lastname"):
+        return jsonify({"error": "All fields are required"}), 400
+
     existing_user = User.query.filter_by(email=data["email"]).first()
     if existing_user:
         return jsonify({"error": "Email already registered"}), 409
@@ -37,7 +40,14 @@ def register():
     db.session.add(new_user)
     db.session.commit()
 
-    return jsonify({"message": "User registered successfully", "user": new_user.serialize()}), 201
+    access_token = create_access_token(identity=new_user.id)
+
+    return jsonify({
+        "message": "User registered successfully",
+        "token": access_token,
+        "user": new_user.serialize()
+    }), 201
+
 
 
 @api.route("/login", methods=["POST"])

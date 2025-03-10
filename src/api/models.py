@@ -13,7 +13,6 @@ class User(db.Model):
     lastname = db.Column(db.String(30), nullable=False)
     email = db.Column(db.String(250), nullable=False, unique=True)
     _password = db.Column(db.String(250), nullable=False)
-    favorites = db.relationship('Favorites', backref='user', lazy=True)
 
     @hybrid_property
     def password(self):
