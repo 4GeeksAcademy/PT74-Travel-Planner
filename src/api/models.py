@@ -1,6 +1,4 @@
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import String, Boolean, Integer
-from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy.ext.hybrid import hybrid_property
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -14,10 +12,14 @@ class User(db.Model):
     email = db.Column(db.String(250), nullable=False, unique=True)
     _password = db.Column(db.String(250), nullable=False)
 
+    # New fields for password reset
+    security_question = db.Column(db.String(250), nullable=False)
+    security_answer = db.Column(db.String(250), nullable=False)
+
     @hybrid_property
     def password(self):
         return self._password
-    
+
     @password.setter
     def password(self, password):
         self._password = generate_password_hash(password)
@@ -25,12 +27,16 @@ class User(db.Model):
     def check_password(self, password):
         return check_password_hash(self._password, password)
 
+    def check_security_answer(self, answer):
+        return check_password_hash(self.security_answer, answer)
+
     def serialize(self):
         return {
             "id": self.id,
             "firstname": self.firstname,
             "lastname": self.lastname,
             "email": self.email,
+            "security_question": self.security_question  # Don’t send the answer!
         }
 
 class Friend(db.Model):
@@ -107,6 +113,7 @@ class PackingList(db.Model):
             "category": self.category,
             "destination_type": self.destination_type,
         }
+
 
 
 
