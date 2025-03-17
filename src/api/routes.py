@@ -89,4 +89,17 @@ def get_profile():
 
     return jsonify({"user": user.serialize()}), 200
 
+@api.route("/get-security-question", methods=["POST"])
+def get_security_question():
+    data = request.get_json()
+    email = data.get("email")
+
+    if not email:
+        return jsonify({"error": "Email is required"}), 400
+
+    user = User.query.filter_by(email=email).first()
+    if not user:
+        return jsonify({"error": "User not found"}), 404
+
+    return jsonify({"security_question": user.security_question}), 200
 
