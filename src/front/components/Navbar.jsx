@@ -26,6 +26,7 @@ export const Navbar = () => {
                             <Link to="/view-packing-list" className="btn btn-outline-primary">View Packing List</Link>
                             <Link to="/enter-expenses" className="btn btn-outline-primary">Enter Expenses</Link>
                             <Link to="/view-itinerary" className="btn btn-outline-primary">View Itinerary</Link>
+                            <Link to="/reset-password" className="btn btn-outline-primary">Reset Password</Link>
                         </ul>
                     </div>
                 </>
