@@ -43,8 +43,7 @@ const Destinations = () => {
         const params = new URLSearchParams({
           'latitude': parseFloat(data.latt),
           'longitude': parseFloat(data.longt),
-          'daily': 'temperature_2m_max',
-          // 'daily': 'temperature_2m_min',
+          'daily': 'temperature_2m_max,temperature_2m_min',
           'temperature_unit': 'fahrenheit'
         })
 
