@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 
+
+//Gathers the lattitude and longitude of the city
 const Destinations = () => {
 
   const [location, setLocation] = useState(null);
@@ -7,6 +9,7 @@ const Destinations = () => {
     city: '',
     region: '',
   });
+  const [weather, setWeather] = useState(null);
 
 
   const handleInputChange = (ev) => {
@@ -36,10 +39,34 @@ const Destinations = () => {
       })
       .then((data) => {
         setLocation(data);
+
+        const params = new URLSearchParams({
+          'latitude': parseFloat(data.latt),
+          'longitude': parseFloat(data.longt),
+          'daily': 'temperature_2m_max',
+          // 'daily': 'temperature_2m_min',
+          'temperature_unit': 'fahrenheit'
+        })
+
+        fetch(`https://api.open-meteo.com/v1/forecast/?${params}`)
+          .then((resp) => {
+            if (!resp.ok) {
+              throw Error("Network response not OK");
+            }
+            return resp.json();
+          })
+          .then((data2) => {
+            setWeather(data2);
+          })
+          .catch((err) => {
+            console.error(err);
+          });
       })
       .catch((err) => {
-        console.error(err);
-      });
+            console.error(err);
+          });
+
+
   }
 
 
@@ -58,9 +85,12 @@ const Destinations = () => {
           </div>
           <button type="submit" class="btn btn-primary my-2">Submit</button>
         </form>
-        <div>Lattitude: {JSON.stringify(location?.latt)}</div>
+        <div>Latitude: {JSON.stringify(location?.latt)}</div>
         <div>Longitude: {JSON.stringify(location?.longt)}</div>
-      </div>
+        <div>Time: {JSON.stringify(weather?.daily.time)}</div>
+        <div>Max: {JSON.stringify(weather?.daily.temperature_2m_max)}</div>
+        <div>Min: {JSON.stringify(weather?.daily.temperature_2m_min)}</div>
+        </div>
     </div>
   );
 };
