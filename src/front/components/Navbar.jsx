@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import travelImg from "../assets/img/travel.png";
+import useGlobalReducer from "../hooks/useGlobalReducer";
 import "./Navbar.css";
 
 export const Navbar = () => {
