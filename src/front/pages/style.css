@@ -1,24 +1,62 @@
-.carousel-item img {
-    height: 20rem;
-    object-fit: contain;
+.carousel {
+    width: 100vw !important;  /* Full viewport width */
+    height: 50vh !important; /* Full viewport height */
+    position: relative;
 }
+
+.carousel-inner {
+    width: 100vw !important;
+    height: 100vh !important;
+}
+
+.carousel-item {
+    width: 100vw !important;
+    height: 50vh !important;
+}
+
+.carousel-item img {
+    width: 100vw !important;  /* Full width */
+    height: 50vh !important; /* Full height */
+    object-fit: cover !important; /* Makes image cover entire space */
+}
+
+
+/* ==========================
+   NAVBAR STYLES
+   ========================== */
+.custom-navbar {
+    width: 100vw !important; /* Ensure navbar spans full width */
+}
+
+/* Prevent Bootstrap containers from limiting width */
+.container {
+    max-width: 100% !important;
+    padding: 0 !important;
+}
+
+
 
 .card {
-    width: 400px;
-    margin: 0 auto;
+    width: 300px !important;  /* Reduce the width */
+    height: 120px !important; /* Reduce the height */
+    margin: auto !important;  /* Center cards */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
 }
 
-.logo-img {
-    /* width: 25%; */
-    height: 3rem;
-    object-fit: contain;
+/* Reduce image size inside cards */
+.card .col-4 img {
+    width: 60px !important; /* Adjust width of the icons */
+    height: 60px !important; /* Adjust height of the icons */
+    object-fit: contain !important; /* Keeps original aspect ratio */
+    margin: auto !important; /* Center the icons */
+    display: block !important;
 }
 
-.navbar-brand {
-    font-size: 2.5rem;
-}
-
-.offcanvas-body {
-    list-style-type: none;
-    width: auto;
+/* Reduce text size inside cards */
+.card-body {
+    font-size: 0.9rem !important; /* Reduce text size */
+    text-align: center !important;
+    font-weight: bold !important;
 }
