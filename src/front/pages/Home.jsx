@@ -17,7 +17,7 @@ export const Home = () => {
       </div>
     </div>
   </div>
-  <div class="card mb-4 bg-primary-subtle">
+  <div class="card home-card mb-4 bg-primary-subtle">
   <div class="row">
     <div class="col-4">
       <img src="https://plus.unsplash.com/premium_photo-1683121257579-d40449389b63?q=80&w=3269&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="d-block w-100" alt="..."/>
@@ -29,7 +29,7 @@ export const Home = () => {
     </div>
   </div>
 </div>
-<div class="card mb-4 bg-primary-subtle">
+<div class="card home-card mb-4 bg-primary-subtle">
   <div class="row">
     <div class="col-4">
       <img src="https://plus.unsplash.com/premium_photo-1706189731991-39c4e4697d05?q=80&w=3272&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="d-block w-100" alt="..."/>
@@ -41,7 +41,7 @@ export const Home = () => {
     </div>
   </div>
 </div>
-<div class="card mb-4 bg-primary-subtle">
+<div class="card home-card mb-4 bg-primary-subtle">
   <div class="row">
     <div class="col-4">
       <img src="https://images.unsplash.com/photo-1553729459-efe14ef6055d?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="d-block w-100" alt="..."/>
@@ -53,7 +53,7 @@ export const Home = () => {
     </div>
   </div>
 </div>
-<div class="card mb-4 bg-primary-subtle">
+<div class="card home-card mb-4 bg-primary-subtle">
   <div class="row">
     <div class="col-4">
       <img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?q=80&w=3272&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="d-block w-100" alt="..."/>
