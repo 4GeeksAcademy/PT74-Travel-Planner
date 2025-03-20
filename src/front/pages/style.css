@@ -1,85 +1,62 @@
-/* Corrección de Navbar */
-.navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 60px; /* Altura ajustada */
-    background-color: rgba(0, 0, 0, 0.9);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    z-index: 1000;
-    color: white;
-  }
-  
-  .navbar-brand {
-    font-size: 20px;
-    font-weight: bold;
-  }
-  
-  .menu {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  
-  /* Evita que el navbar cubra el contenido */
-  body {
-    padding-top: 70px;
-    background-color: #121212;
-    margin: 0;
-    font-family: Arial, sans-serif;
-  }
-  
-  /* Corrección del Carrusel */
-  .slideshow-background {
+.carousel {
+    width: 100vw !important;  /* Full viewport width */
+    height: 50vh !important; /* Full viewport height */
     position: relative;
-    width: 100%;
-    height: 500px; /* Ajuste del tamaño */
-    overflow: hidden;
-  }
-  
-  .carousel-item img {
-    object-fit: cover;
-    width: 100%;
-    height: 500px;
-  }
-  
-  /* Secciones de contenido */
-  .content-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    padding: 20px;
-  }
-  
-  .content {
-    width: 400px;
-    background-color: #f8f9fa;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .card-body {
-    font-weight: bold;
-    font-size: 18px;
-    padding: 10px;
-  }
-  
-  /* Eliminar menús duplicados */
-  .navbar-duplicate,
-  .menu-duplicate {
-    display: none !important;
-  }
-  
-  /* Centrado de elementos */
-  .text-center {
-    text-align: center;
-  }
-  
+}
+
+.carousel-inner {
+    width: 100vw !important;
+    height: 100vh !important;
+}
+
+.carousel-item {
+    width: 100vw !important;
+    height: 50vh !important;
+}
+
+.carousel-item img {
+    width: 100vw !important;  /* Full width */
+    height: 50vh !important; /* Full height */
+    object-fit: cover !important; /* Makes image cover entire space */
+}
+
+
+/* ==========================
+   NAVBAR STYLES
+   ========================== */
+.custom-navbar {
+    width: 100vw !important; /* Ensure navbar spans full width */
+}
+
+/* Prevent Bootstrap containers from limiting width */
+.container {
+    max-width: 100% !important;
+    padding: 0 !important;
+}
+
+
+
+.card {
+    width: 300px !important;  /* Reduce the width */
+    height: 120px !important; /* Reduce the height */
+    margin: auto !important;  /* Center cards */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+}
+
+/* Reduce image size inside cards */
+.card .col-4 img {
+    width: 60px !important; /* Adjust width of the icons */
+    height: 60px !important; /* Adjust height of the icons */
+    object-fit: contain !important; /* Keeps original aspect ratio */
+    margin: auto !important; /* Center the icons */
+    display: block !important;
+}
+
+/* Reduce text size inside cards */
+.card-body {
+    font-size: 0.9rem !important; /* Reduce text size */
+    text-align: center !important;
+    font-weight: bold !important;
+}

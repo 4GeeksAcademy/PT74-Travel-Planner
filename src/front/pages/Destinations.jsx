@@ -27,7 +27,8 @@ const Destinations = () => {
       'geoit': 'JSON',
       'locate': formData.city,
       'region': formData.region,
-      'strictmode': '1'
+      'strictmode': '1',
+      'auth': '947968704678902694455x107995'
     })
 
     fetch(`https://geocode.xyz/?${params}`)
@@ -89,6 +90,7 @@ const Destinations = () => {
         <div>Time: {JSON.stringify(weather?.daily.time)}</div>
         <div>Max: {JSON.stringify(weather?.daily.temperature_2m_max)}</div>
         <div>Min: {JSON.stringify(weather?.daily.temperature_2m_min)}</div>
+        
         </div>
     </div>
   );

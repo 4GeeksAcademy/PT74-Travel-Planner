@@ -1,105 +1,84 @@
-import React from "react";
-import "./style.css";
+import React, { useEffect } from "react"
+import './style.css';
 
 export const Home = () => {
   return (
-    <div className="bg-dark">
-     
+      <div className="bg-dark position-relative">
+          {/* Full-Screen Bootstrap Carousel */}
+          <div className="container-fluid p-0">
+              <div id="carouselExampleSlidesOnly" className="carousel slide" data-bs-ride="carousel">
+                  <div className="carousel-inner">
+                      <div className="carousel-item active">
+                          <img src="https://cdn.prod.website-files.com/5d9667bad4a41e222995e15b/62a28855d2adb643754bcb64_Grand%20Cayman.jpg" className="d-block w-100" alt="Grand Cayman" />
+                      </div>
+                      <div className="carousel-item">
+                          <img src="https://www.travelandleisure.com/thmb/Qa7_o8_XVpIVH5vqq7i73UlTSkU=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/eiffel-tower-paris-france-EIFFEL0217-6ccc3553e98946f18c893018d5b42bde.jpg" className="d-block w-100" alt="Eiffel Tower" />
+                      </div>
+                      <div className="carousel-item">
+                          <img src="https://themilepost.com/wp-content/uploads/2022/05/Peyto_Lake-Banff_NP-Canada.jpg" className="d-block w-100" alt="Banff Canada" />
+                      </div>
+                  </div>
+              </div>
+          </div>
 
-      {/* Carousel */}
-      <div
-        id="carouselExampleSlidesOnly"
-        className="carousel slide slideshow-background"
-        data-bs-ride="carousel"
-      >
-        <div className="carousel-inner">
-          <div className="carousel-item active">
-            <img
-              src="https://cdn.prod.website-files.com/5d9667bad4a41e222995e15b/62a28855d2adb643754bcb64_Grand%20Cayman.jpg"
-              className="d-block w-100"
-              alt="..."
-            />
+          {/* Destination Cards Section */}
+          <div className="container mt-4">
+              <div className="row">
+                  <div className="col-md-6">
+                      <div className="card mb-4 bg-primary-subtle">
+                          <div className="row">
+                              <div className="col-4">
+                                  <img src="https://plus.unsplash.com/premium_photo-1683121257579-d40449389b63?q=80&w=3269&auto=format&fit=crop" className="d-block w-100" alt="Destinations" />
+                              </div>
+                              <div className="col my-auto">
+                                  <div className="card-body text-center">Destinations</div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div className="col-md-6">
+                      <div className="card mb-4 bg-primary-subtle">
+                          <div className="row">
+                              <div className="col-4">
+                                  <img src="https://plus.unsplash.com/premium_photo-1706189731991-39c4e4697d05?q=80&w=3272&auto=format&fit=crop" className="d-block w-100" alt="Itinerary" />
+                              </div>
+                              <div className="col my-auto">
+                                  <div className="card-body text-center">Itinerary</div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  
+                  <div className="col-md-6">
+                      <div className="card mb-4 bg-primary-subtle">
+                          <div className="row">
+                              <div className="col-4">
+                                  <img src="https://images.unsplash.com/photo-1553729459-efe14ef6055d?q=80&w=3270&auto=format&fit=crop" className="d-block w-100" alt="Expenses" />
+                              </div>
+                              <div className="col my-auto">
+                                  <div className="card-body text-center">Expenses</div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div className="col-md-6">
+                      <div className="card mb-4 bg-primary-subtle">
+                          <div className="row">
+                              <div className="col-4">
+                                  <img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?q=80&w=3272&auto=format&fit=crop" className="d-block w-100" alt="Packing List" />
+                              </div>
+                              <div className="col my-auto">
+                                  <div className="card-body text-center">Packing List</div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  
+              </div>
           </div>
-          <div className="carousel-item">
-            <img
-              src="https://www.travelandleisure.com/thmb/Qa7_o8_XVpIVH5vqq7i73UlTSkU=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/eiffel-tower-paris-france-EIFFEL0217-6ccc3553e98946f18c893018d5b42bde.jpg"
-              className="d-block w-100"
-              alt="..."
-            />
-          </div>
-          <div className="carousel-item">
-            <img
-              src="https://themilepost.com/wp-content/uploads/2022/05/Peyto_Lake-Banff_NP-Canada.jpg"
-              className="d-block w-100"
-              alt="..."
-            />
-          </div>
-        </div>
       </div>
-
-      {/* Secciones de contenido */}
-      <div className="content-wrapper">
-        <div className="card content">
-          <div className="row">
-            <div className="col-4">
-              <img
-                src="https://plus.unsplash.com/premium_photo-1683121257579-d40449389b63?q=80&w=3269&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                className="d-block w-100"
-                alt="..."
-              />
-            </div>
-            <div className="col my-auto">
-              <div className="card-body text-center">Destinations</div>
-            </div>
-          </div>
-        </div>
-
-        <div className="card content">
-          <div className="row">
-            <div className="col-4">
-              <img
-                src="https://plus.unsplash.com/premium_photo-1706189731991-39c4e4697d05?q=80&w=3272&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                className="d-block w-100"
-                alt="..."
-              />
-            </div>
-            <div className="col my-auto">
-              <div className="card-body text-center">Itinerary</div>
-            </div>
-          </div>
-        </div>
-
-        <div className="card content">
-          <div className="row">
-            <div className="col-4">
-              <img
-                src="https://images.unsplash.com/photo-1553729459-efe14ef6055d?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                className="d-block w-100"
-                alt="..."
-              />
-            </div>
-            <div className="col my-auto">
-              <div className="card-body text-center">Expenses</div>
-            </div>
-          </div>
-        </div>
-
-        <div className="card content">
-          <div className="row">
-            <div className="col-4">
-              <img
-                src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?q=80&w=3272&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                className="d-block w-100"
-                alt="..."
-              />
-            </div>
-            <div className="col my-auto">
-              <div className="card-body text-center">Packing List</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   );
 };
 
