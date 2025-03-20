@@ -27,7 +27,8 @@ const Destinations = () => {
       'geoit': 'JSON',
       'locate': formData.city,
       'region': formData.region,
-      'strictmode': '1'
+      'strictmode': '1',
+      'auth': '947968704678902694455x107995'
     })
 
     fetch(`https://geocode.xyz/?${params}`)
@@ -62,8 +63,8 @@ const Destinations = () => {
           });
       })
       .catch((err) => {
-            console.error(err);
-          });
+        console.error(err);
+      });
 
 
   }
@@ -89,7 +90,37 @@ const Destinations = () => {
         <div>Time: {JSON.stringify(weather?.daily.time)}</div>
         <div>Max: {JSON.stringify(weather?.daily.temperature_2m_max)}</div>
         <div>Min: {JSON.stringify(weather?.daily.temperature_2m_min)}</div>
+      </div>
+      <div className="row">
+        <div className="col-2">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{weather?.daily.time[0]}</h5>
+              <p class="card-text">Low: {Math.round(weather?.daily.temperature_2m_min[0])} °F</p>
+              <p class="card-text">High: {Math.round(weather?.daily.temperature_2m_max[0])} °F</p>
+            </div>
+          </div>
         </div>
+        <div className="col-2">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{weather?.daily.time[1]}</h5>
+              <p class="card-text">Low: {Math.round(weather?.daily.temperature_2m_min[1])} °F</p>
+              <p class="card-text">High: {Math.round(weather?.daily.temperature_2m_max[1])} °F</p>
+            </div>
+          </div>
+        </div>
+        <div className="col-2">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{weather?.daily.time[0]}</h5>
+              <p class="card-text">Low: {Math.round(weather?.daily.temperature_2m_min[0])} °F</p>
+              <p class="card-text">High: {Math.round(weather?.daily.temperature_2m_max[0])} °F</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   );
 };
