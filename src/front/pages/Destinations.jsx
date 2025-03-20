@@ -71,55 +71,90 @@ const Destinations = () => {
 
 
   return (
-    <div class="row d-flex justify-content-center">
-      <div class="col-6 text-center">
+    <div className="row d-flex justify-content-center">
+      <div className="col-6 text-center">
         <h1>Your Destination!</h1>
         <h1>Your Adventure!</h1><br></br>
         <h2>Where are you headed?</h2><br></br>
         <form onSubmit={ev => handleSubmit(ev)}>
-          <div class="form-group my-2">Enter city destination. ex: Orlando
-            <input type="text" class="form-control" id="city" name="city" onChange={handleInputChange} placeholder="Enter city destination. ex: Orlando" />
+          <div className="form-group my-2">Enter city destination. ex: Orlando
+            <input type="text" className="form-control" id="city" name="city" onChange={handleInputChange} placeholder="Enter city destination. ex: Orlando" />
           </div>
-          <div class="form-group my-2">Enter region as a 2 character code.  ex: US
-            <input type="text" class="form-control" id="region" name="region" onChange={handleInputChange} placeholder="Enter region as a 2 character code.  ex: US" />
+          <div className="form-group my-2">Enter region as a 2 character code.  ex: US
+            <input type="text" className="form-control" id="region" name="region" onChange={handleInputChange} placeholder="Enter region as a 2 character code.  ex: US" />
           </div>
-          <button type="submit" class="btn btn-primary my-2">Submit</button>
+          <button type="submit" className="btn btn-primary my-2">Submit</button>
         </form>
-        <div>Latitude: {JSON.stringify(location?.latt)}</div>
-        <div>Longitude: {JSON.stringify(location?.longt)}</div>
-        <div>Time: {JSON.stringify(weather?.daily.time)}</div>
-        <div>Max: {JSON.stringify(weather?.daily.temperature_2m_max)}</div>
-        <div>Min: {JSON.stringify(weather?.daily.temperature_2m_min)}</div>
+        <br></br><br></br>
+        <h1>7 Day Weather Forecast</h1>
       </div>
-      <div className="row">
-        <div className="col-2">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">{weather?.daily.time[0]}</h5>
-              <p class="card-text">Low: {Math.round(weather?.daily.temperature_2m_min[0])} °F</p>
-              <p class="card-text">High: {Math.round(weather?.daily.temperature_2m_max[0])} °F</p>
+
+      <div className="row d-flex justify-content-center">
+        <div style={{ width: '10rem' }}>
+          <div className="card">
+            <div className="card-body text-center">
+              <h5 className="card-title">{weather?.daily.time[0].slice(5)}</h5><hr></hr>
+              <p className="card-text">Low: {Math.round(weather?.daily.temperature_2m_min[0])}°F</p>
+              <p className="card-text">High: {Math.round(weather?.daily.temperature_2m_max[0])}°F</p>
             </div>
           </div>
         </div>
-        <div className="col-2">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">{weather?.daily.time[1]}</h5>
-              <p class="card-text">Low: {Math.round(weather?.daily.temperature_2m_min[1])} °F</p>
-              <p class="card-text">High: {Math.round(weather?.daily.temperature_2m_max[1])} °F</p>
+        <div style={{ width: '10rem' }}>
+          <div className="card">
+            <div className="card-body text-center">
+              <h5 className="card-title">{weather?.daily.time[1].slice(5)}</h5><hr></hr>
+              <p className="card-text">Low: {Math.round(weather?.daily.temperature_2m_min[1])}°F</p>
+              <p className="card-text">High: {Math.round(weather?.daily.temperature_2m_max[1])}°F</p>
             </div>
           </div>
         </div>
-        <div className="col-2">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">{weather?.daily.time[0]}</h5>
-              <p class="card-text">Low: {Math.round(weather?.daily.temperature_2m_min[0])} °F</p>
-              <p class="card-text">High: {Math.round(weather?.daily.temperature_2m_max[0])} °F</p>
+        <div style={{ width: '10rem' }}>
+          <div className="card">
+            <div className="card-body text-center">
+              <h5 className="card-title">{weather?.daily.time[2].slice(5)}</h5><hr></hr>
+              <p className="card-text">Low: {Math.round(weather?.daily.temperature_2m_min[2])}°F</p>
+              <p className="card-text">High: {Math.round(weather?.daily.temperature_2m_max[2])}°F</p>
+            </div>
+          </div>
+        </div>
+        <div style={{ width: '10rem' }}>
+          <div className="card">
+            <div className="card-body text-center">
+              <h5 className="card-title">{weather?.daily.time[3].slice(5)}</h5><hr></hr>
+              <p className="card-text">Low: {Math.round(weather?.daily.temperature_2m_min[3])}°F</p>
+              <p className="card-text">High: {Math.round(weather?.daily.temperature_2m_max[3])}°F</p>
+            </div>
+          </div>
+        </div>
+        <div style={{ width: '10rem' }}>
+          <div className="card">
+            <div className="card-body text-center">
+              <h5 className="card-title">{weather?.daily.time[4].slice(5)}</h5><hr></hr>
+              <p className="card-text">Low: {Math.round(weather?.daily.temperature_2m_min[4])}°F</p>
+              <p className="card-text">High: {Math.round(weather?.daily.temperature_2m_max[4])}°F</p>
+            </div>
+          </div>
+        </div>
+        <div style={{ width: '10rem' }}>
+          <div className="card">
+            <div className="card-body text-center">
+              <h5 className="card-title">{weather?.daily.time[5].slice(5)}</h5><hr></hr>
+              <p className="card-text">Low: {Math.round(weather?.daily.temperature_2m_min[5])}°F</p>
+              <p className="card-text">High: {Math.round(weather?.daily.temperature_2m_max[5])}°F</p>
+            </div>
+          </div>
+        </div>
+        <div style={{ width: '10rem' }}>
+          <div className="card">
+            <div className="card-body text-center">
+              <h5 className="card-title">{weather?.daily.time[6].slice(5)}</h5><hr></hr>
+              <p className="card-text">Low: {Math.round(weather?.daily.temperature_2m_min[6])}°F</p>
+              <p className="card-text">High: {Math.round(weather?.daily.temperature_2m_max[6])}°F</p>
             </div>
           </div>
         </div>
       </div>
+
 
     </div>
   );
