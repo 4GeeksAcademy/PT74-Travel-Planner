@@ -40,31 +40,33 @@ export const Login = () => {
     };
 
     return (
-        <div className="container mt-5" style={{ maxWidth: "500px" }}>
-            <h2 className="text-center mb-4">Login</h2>
-            <form onSubmit={handleSubmit}>
-                <div className="mb-3">
-                    <label htmlFor="email" className="form-label">Email</label>
-                    <input type="email" className="form-control" id="email" onChange={handleChange} required />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="password" className="form-label">Password</label>
-                    <input type="password" className="form-control" id="password" onChange={handleChange} required />
-                </div>
-                <div className="d-flex justify-content-between align-items-center">
-                    <button type="submit" className="btn btn-primary">Login</button>
-                    <Link to="/reset-password" className="text-decoration-none">Forgot Password?</Link>
-                </div>
+        <div className="login-wrapper">
+            <div className="login-container">
+                <h2 className="text-center mb-4">Login</h2>
+                <form onSubmit={handleSubmit}>
+                    <div className="mb-3">
+                        <label htmlFor="email" className="form-label">Email</label>
+                        <input type="email" className="form-control" id="email" onChange={handleChange} required />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="password" className="form-label">Password</label>
+                        <input type="password" className="form-control" id="password" onChange={handleChange} required />
+                    </div>
+                    <div className="d-flex justify-content-between align-items-center">
+                        <button type="submit" className="btn btn-primary">Login</button>
+                        <Link to="/reset-password" className="text-decoration-none">Forgot Password?</Link>
+                    </div>
 
-                {error && <div className="alert alert-danger mt-3">{error}</div>}
+                    {error && <div className="alert alert-danger mt-3">{error}</div>}
 
-                <div className="text-center mt-4">
-                    <p>Don't have an account?</p>
-                    <Link to="/register">
-                        <button type="button" className="btn btn-outline-secondary">Register an Account</button>
-                    </Link>
-                </div>
-            </form>
+                    <div className="text-center mt-4">
+                        <p>Don't have an account?</p>
+                        <Link to="/register">
+                            <button type="button" className="btn btn-outline-secondary">Register an Account</button>
+                        </Link>
+                    </div>
+                </form>
+            </div>
         </div>
     );
 };
