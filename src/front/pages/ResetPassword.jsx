@@ -66,57 +66,58 @@ export const ResetPassword = () => {
     };
 
     return (
-        <div className="container mt-5" style={{ maxWidth: "500px" }}>
-            <h2 className="mb-4">Reset Password</h2>
+        <div className="reset-wrapper">
+            <div className="reset-container">
+                <h2 className="text-center mb-4">Reset Password</h2>
 
-            {!questionFetched ? (
-                <form onSubmit={handleEmailSubmit}>
-                    <input
-                        name="email"
-                        className="form-control mb-3"
-                        placeholder="Enter your email"
-                        onChange={handleChange}
-                        required
-                    />
-                    <button type="submit" className="btn btn-primary">Continue</button>
-                </form>
-            ) : (
-                <form onSubmit={handleResetSubmit}>
-                    <div className="mb-3">
-                        <label className="form-label">Security Question</label>
+                {!questionFetched ? (
+                    <form onSubmit={handleEmailSubmit}>
                         <input
-                            className="form-control"
-                            name="security_question"
-                            value={form.security_question}
-                            readOnly
-                        />
-                    </div>
-                    <div className="mb-3">
-                        <label className="form-label">Your Answer</label>
-                        <input
-                            name="security_answer"
-                            className="form-control"
+                            name="email"
+                            className="form-control mb-3"
+                            placeholder="Enter your email"
                             onChange={handleChange}
                             required
                         />
-                    </div>
-                    <div className="mb-3">
-                        <label className="form-label">New Password</label>
-                        <input
-                            type="password"
-                            name="new_password"
-                            className="form-control"
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
-                    <button type="submit" className="btn btn-success">Reset Password</button>
-                </form>
-            )}
+                        <button type="submit" className="btn btn-primary w-100">Continue</button>
+                    </form>
+                ) : (
+                    <form onSubmit={handleResetSubmit}>
+                        <div className="mb-3">
+                            <label className="form-label">Security Question</label>
+                            <input
+                                className="form-control"
+                                name="security_question"
+                                value={form.security_question}
+                                readOnly
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label className="form-label">Your Answer</label>
+                            <input
+                                name="security_answer"
+                                className="form-control"
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label className="form-label">New Password</label>
+                            <input
+                                type="password"
+                                name="new_password"
+                                className="form-control"
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
+                        <button type="submit" className="btn btn-success w-100">Reset Password</button>
+                    </form>
+                )}
 
-            {message && <div className="alert alert-success mt-3">{message}</div>}
-            {error && <div className="alert alert-danger mt-3">{error}</div>}
+                {message && <div className="alert alert-success mt-3">{message}</div>}
+                {error && <div className="alert alert-danger mt-3">{error}</div>}
+            </div>
         </div>
     );
 };
-
