@@ -11,8 +11,6 @@ class User(db.Model):
     lastname = db.Column(db.String(30), nullable=False)
     email = db.Column(db.String(250), nullable=False, unique=True)
     _password = db.Column(db.String(250), nullable=False)
-
-    # New fields for password reset
     security_question = db.Column(db.String(250), nullable=False)
     security_answer = db.Column(db.String(250), nullable=False)
 
@@ -36,7 +34,7 @@ class User(db.Model):
             "firstname": self.firstname,
             "lastname": self.lastname,
             "email": self.email,
-            "security_question": self.security_question  # Don’t send the answer!
+            "security_question": self.security_question
         }
 
 class Friend(db.Model):
@@ -55,13 +53,13 @@ class Friend(db.Model):
         }
 
 class Destination(db.Model):
-    __tablename__ = 'destination' 
+    __tablename__ = 'destination'
     id = db.Column(db.Integer, primary_key=True)
 
     def serialize(self):
         return {
             "id": self.id,
-        }    
+        }
 
 class Itinerary(db.Model):
     __tablename__ = 'itinerary'
@@ -105,6 +103,7 @@ class PackingList(db.Model):
     item = db.Column(db.String(250), nullable=False)
     category = db.Column(db.String(250), nullable=False)
     destination_type = db.Column(db.String(250), nullable=False)
+    checked = db.Column(db.Boolean)
 
     def serialize(self):
         return {
@@ -112,21 +111,5 @@ class PackingList(db.Model):
             "item": self.item,
             "category": self.category,
             "destination_type": self.destination_type,
+            "checked": self.checked,
         }
-
-
-
-
-# class User(db.Model):
-#     id: Mapped[int] = mapped_column(primary_key=True)
-#     email: Mapped[str] = mapped_column(String(120), unique=True, nullable=False)
-#     password: Mapped[str] = mapped_column(nullable=False)
-#     is_active: Mapped[bool] = mapped_column(Boolean(), nullable=False)
-
-
-#     def serialize(self):
-#         return {
-#             "id": self.id,
-#             "email": self.email,
-#             # do not serialize the password, its a security breach
-#         }
