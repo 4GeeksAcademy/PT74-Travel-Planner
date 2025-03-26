@@ -38,7 +38,8 @@ const Destinations = () => {
           latitude: parseFloat(data.latt),
           longitude: parseFloat(data.longt),
           daily: 'temperature_2m_max,temperature_2m_min',
-          temperature_unit: 'fahrenheit'
+          temperature_unit: 'fahrenheit',
+          timezone: 'auto'
         });
 
         fetch(`https://api.open-meteo.com/v1/forecast/?${weatherParams}`)
@@ -52,6 +53,11 @@ const Destinations = () => {
           .catch((err) => console.error(err));
       })
       .catch((err) => console.error(err));
+  };
+
+  const formatDateShort = (dateStr) => {
+    const date = new Date(dateStr);
+    return `${date.getMonth() + 1}/${date.getDate()}`; // MM/DD
   };
 
   return (
@@ -95,42 +101,20 @@ const Destinations = () => {
       </form>
 
       {location && weather && (
-        <div className="card p-4 shadow mt-5 w-100">
-          <h5 className="text-center mb-3">Weather & Location Info</h5>
-          <div className="mb-2">Latitude: {location?.latt}</div>
-          <div className="mb-2">Longitude: {location?.longt}</div>
-
-          <table className="table table-bordered text-center mt-4">
-  <thead className="table-light">
-    <tr>
-      <th></th>
-      {weather.daily.time.map((_, idx) => (
-        <th key={idx}>Day {idx + 1}</th>
-      ))}
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">Dates</th>
-      {weather.daily.time.map((date, idx) => (
-        <td key={idx}>{date}</td>
-      ))}
-    </tr>
-    <tr>
-      <th scope="row">Max Temps (°F)</th>
-      {weather.daily.temperature_2m_max.map((temp, idx) => (
-        <td key={idx}>{temp}</td>
-      ))}
-    </tr>
-    <tr>
-      <th scope="row">Min Temps (°F)</th>
-      {weather.daily.temperature_2m_min.map((temp, idx) => (
-        <td key={idx}>{temp}</td>
-      ))}
-    </tr>
-  </tbody>
-</table>
-
+        <div className="w-100 mt-5 text-center">
+          <h3 className="mb-4">7 Day Weather Forecast</h3>
+          <div className="d-flex flex-wrap justify-content-center gap-3">
+            {weather.daily.time.map((date, index) => (
+              <div className="card shadow-sm" style={{ width: "150px" }} key={index}>
+                <div className="card-body">
+                  <h6 className="card-title">{formatDateShort(date)}</h6>
+                  <hr />
+                  <p className="card-text mb-1"><strong>Low:</strong> {weather.daily.temperature_2m_min[index]}°F</p>
+                  <p className="card-text"><strong>High:</strong> {weather.daily.temperature_2m_max[index]}°F</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       )}
     </div>
