@@ -20,9 +20,7 @@
     object-fit: cover !important;
 }
 
-/* ==========================
-   NAVBAR STYLES
-   ========================== */
+
 .custom-navbar {
     width: 100vw !important;
 }
@@ -99,8 +97,8 @@ html, body {
 .reset-wrapper {
     display: flex;
     justify-content: center;
-    padding-top: 60px; /* Push it down from the navbar */
-    padding-bottom: 40px; /* Optional: add some space before footer */
+    padding-top: 60px; 
+    padding-bottom: 40px; 
 }
   
 .reset-container {
